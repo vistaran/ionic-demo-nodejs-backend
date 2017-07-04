@@ -4,9 +4,19 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+Task = require('./api/models/todoListModel');
+mongoose = require('mongoose');
 
-var index = require('./routes/index');
-var users = require('./routes/users');
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://ionic:000100010@ds145892.mlab.com:45892/todo_list');
+
+mongoose.connection.on('connected', function() {
+    console.log("connection established successfully");
+});
+
+mongoose.connection.on('error', function(err) {
+    console.log('connection to mongo failed ' + err);
+});
 
 var app = express();
 
@@ -22,8 +32,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-app.use('/users', users);
+var routes = require('./api/routes/todoListRoutes');
+routes(app);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
