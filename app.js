@@ -8,7 +8,7 @@ Task = require('./api/models/todoListModel');
 mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://ionic:000100010@ds145892.mlab.com:45892/todo_list');
+mongoose.connect('mongodb://ionic:000100010@ds145892.mlab.com:45892/todo_list', {useMongoClient: true});
 
 mongoose.connection.on('connected', function() {
     console.log("connection established successfully");
