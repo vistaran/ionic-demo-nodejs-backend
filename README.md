@@ -1,6 +1,10 @@
 # ionic-demo-nodejs-backend
 Ionic app demo Backend Source Code.
 
+## Requirements
+
+**NodeJS** and **npm** is required in order to use this project.
+
 ## Set Up
 
 1. Once cloned go inside folder using CMD or Shell.
